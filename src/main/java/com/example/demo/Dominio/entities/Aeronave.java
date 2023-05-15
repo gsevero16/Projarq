@@ -1,5 +1,7 @@
 package com.example.demo.Dominio;
 
-public record Aviao() {
-    
+public class Aeronave{
+private 
+
+
 }
