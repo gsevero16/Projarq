@@ -1,4 +1,4 @@
-package com.example.demo.Dominio;
+package domain.entities;
 
 public class Slot {
     

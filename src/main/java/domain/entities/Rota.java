@@ -1,6 +1,6 @@
-package com.example.demo.Dominio;
+package domain.entities;
 
-public class Rotas {
+public class Rota {
     private String nome;
     private Aeroporto origem;
     private Aeroporto destino;

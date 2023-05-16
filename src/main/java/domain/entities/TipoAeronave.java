@@ -1,4 +1,4 @@
-package com.example.demo.Dominio;
+package domain.entities;
 
 enum TipoAeronave {
 PARTICULAR (1), //AERONAVE PARTICULAR DE PEQUENO PORTE

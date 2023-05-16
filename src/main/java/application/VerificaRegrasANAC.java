@@ -1,4 +1,4 @@
-package com.example.demo.Aplicação;
+package application;
 
 public class VerificaRegrasANAC {
     
