@@ -3,11 +3,13 @@ package persistence.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import Interface.IPlanoVooRep;
 import domain.entities.PlanoDeVoo;
 import persistence.CRUD.IPlanoVooCRUD;
 
+@Component
 public class PlanoDeVooRepository implements IPlanoVooRep{
     private IPlanoVooCRUD planoVooCRUD;
 

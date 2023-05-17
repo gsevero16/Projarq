@@ -3,11 +3,13 @@ package persistence.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import Interface.IRotaRep;
 import domain.entities.Rota;
 import persistence.CRUD.IRotaCRUD;
 
+@Component
 public class RotaRepository implements IRotaRep{
     private IRotaCRUD rotaCRUD;
 
