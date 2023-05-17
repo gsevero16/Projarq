@@ -1,3 +1,4 @@
+package Interface;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,11 @@ import application.ConsultaRelatorio;
 import application.ConsultaRota;
 import application.ConsultaSlot;
 import application.service.ConsultaPlanoDeVoo;
+import domain.DTO.PlanoDeVooDTO;
+import domain.DTO.RelatorioDTO;
+import domain.DTO.RotaDTO;
+import domain.entities.Aerovia;
+import domain.entities.PlanoDeVoo;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -48,7 +54,7 @@ public class ControleDeTrafegoAereo {
     @CrossOrigin(origins = "*")
     public List<RotaDTO> consultaRotasDestinos(@RequestParam("destino") String destino,
             @RequestParam("origem") String origem) {
-        return this.ConsultaRota.buscaRotaDestino(destino, origem);
+        return this.consultaRotasDestinos(destino, origem);
     }
 
     @GetMapping("/altitudes-livres/{aeroviaId}")
@@ -56,13 +62,13 @@ public class ControleDeTrafegoAereo {
     public List<Integer> consultaAltitudesLivres(@PathVariable int aeroviaId, @RequestParam("data") String data,
             @RequestParam("horario") float horario, @RequestParam("velocidade") float velCruzeiro) {
         LocalDate dataObj = LocalDate.parse(data);
-        return this.ConsultaSlot.consultaAltitudesLivres(aeroviaId, dataObj, horario, velCruzeiro);
+        return this.consultaSlot.consultaSlotsLivres(aeroviaId, dataObj, null, velCruzeiro);
     }
 
     @PostMapping("/verifica-plano-voo")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<List<Aerovia>> verificaPlanoDeVoo(@RequestBody PlanoVooDTO planoVoo) {
-        List<Aerovia> lista = this.VerificaPlanoDeVoo.verificaPlanoDeVoo(planoVoo);
+    public ResponseEntity<List<Aerovia>> verificaPlanoDeVoo(@RequestBody PlanoDeVooDTO planoVoo) {
+        List<Aerovia> lista = this.consultaPlanoDeVoo.verificaPlanoDeVoo(planoVoo);
 
         if (!lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(lista);
@@ -72,8 +78,8 @@ public class ControleDeTrafegoAereo {
 
     @PostMapping("/libera-plano")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<PlanoDeVoo> liberarPlano(@RequestBody PlanoVooDTO planoVoo) {
-        PlanoDeVoo plano = this.AutorizaPlanoDeVoo.autorizaPlanoDeVoo(planoVoo);
+    public ResponseEntity<PlanoDeVoo> liberarPlano(@RequestBody PlanoDeVooDTO planoVoo) {
+        PlanoDeVoo plano = this.autorizaPlanoDeVoo.autorizaPlanoDeVoo(planoVoo);
         if (plano != null) {
             return ResponseEntity.status(HttpStatus.OK).body(plano);
         }
@@ -95,7 +101,7 @@ public class ControleDeTrafegoAereo {
     @CrossOrigin(origins = "*")
     public RelatorioDTO geraRelatorio(@PathVariable int aeroviaId, @RequestParam("data") String data){
         LocalDate dataObj = LocalDate.parse(data);
-        return this.consultaRelatorio.geraRelatorio(aeroviaId, dataObj);
+        return this.consultaRelatorio.consultaRelatorio(aeroviaId, dataObj);
     }
 }
 
