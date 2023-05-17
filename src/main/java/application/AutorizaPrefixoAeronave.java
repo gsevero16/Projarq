@@ -7,6 +7,6 @@ PRÓXIMAS NÃO PODE COMEÇAR POR Q
 SEGUNDA LETRA NÃO PODE SER W
 NÃO PODE USAR SOS, XXX, PAN, TTT, VFR, VMC, IMC 
  */
-public class GeraPrefixoAeronave {
+public class AutorizaPrefixoAeronave {
     
 }
