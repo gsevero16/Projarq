@@ -19,8 +19,8 @@ public class RotaRepository implements IRotaRep{
     }
 
     @Override
-    public Rota findById(int rotaId) {
-        return this.rotaCRUD.findById(rotaId).get();
+    public Rota findById(int id_rota) {
+        return this.rotaCRUD.findById(id_rota).get();
     }
 
     @Override

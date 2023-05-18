@@ -27,9 +27,9 @@ public class Rota {
     //public listaRotaLivre(){}
 @ManyToMany
  @JoinTable(
-    name = " rota_aerovia ",
-    joinColumns =  @JoinColumn(name = " id_rota "),
-    inverseJoinColumns = @JoinColumn(name = " id_aerovia "))
+    name = "rota_aerovia",
+    joinColumns =  @JoinColumn(name = "id_rota"),
+    inverseJoinColumns = @JoinColumn(name = "id_aerovia"))
     public List<Aerovia> aerovias;
 
     @Id
@@ -39,11 +39,11 @@ public class Rota {
     public String nome;
 
     @ManyToOne
-    @JoinColumn(name = "ref_geo_origin_id")
+    @JoinColumn(name = "id_origem")
     public Aeroporto origem;
 
     @ManyToOne
-    @JoinColumn(name = "ref_geo_destiny_id")
+    @JoinColumn(name = "id_destino")
     public Aeroporto destino;
 
     public Rota(){

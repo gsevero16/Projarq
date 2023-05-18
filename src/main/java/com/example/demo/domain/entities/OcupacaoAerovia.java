@@ -12,12 +12,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ocupacaoaerovia")
+@Table(name="ocupacao_aerovia")
 
 public class OcupacaoAerovia {
 
    // public static final String data = null;
-   // public static final int aeroviaId = 0;
+   // public static final int id_aerovia = 0;
     public static final float horaSlot = 0;
 
     @Id
@@ -27,18 +27,18 @@ public class OcupacaoAerovia {
     public LocalDate data;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn( name = "aeroviaId")
+    @JoinColumn( name = "id_aerovia")
 	public Aerovia aerovia;
-	public int slot_altitude;
-	public int slot_horario;
+	public int altitude_slot;
+	public int horario_slot;
 	
     public OcupacaoAerovia() { }      
 
-    public OcupacaoAerovia(LocalDate data, Aerovia aerovia, int slot_altitude, int slot_horario) {
+    public OcupacaoAerovia(LocalDate data, Aerovia aerovia, int altitude, int horario) {
         this.data = data;
         this.aerovia = aerovia;
-        this.slot_altitude = slot_altitude;
-        this.slot_horario = slot_horario;
+        this.altitude_slot = altitude;
+        this.horario_slot = horario;
     }
 
 }

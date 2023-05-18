@@ -21,18 +21,18 @@ public class OcupacaoAeroviaRepository implements IOcupacaoAeroviaRep {
     }
 
     @Override
-    public List<OcupacaoAerovia> findOcupacaoAerovias(int aeroviaId, LocalDate data, List<Float> horarios) {
+    public List<OcupacaoAerovia> findOcupacaoAerovias(int id_aerovia, LocalDate data, List<Float> horarios) {
         return ocupacaoAeroviaCRUD.findAll().stream()
-        .filter(e-> e.id == aeroviaId)
+        .filter(e-> e.id == id_aerovia)
         .filter(e-> e.data.equals(data))
         .filter(e -> horarios.contains((float)e.horaSlot))
         .collect(Collectors.toList());
     }
 
     @Override
-    public List<OcupacaoAerovia> findAllByDataOcupacaoAerovias(int aeroviaId, LocalDate data) {
+    public List<OcupacaoAerovia> findAllByDataOcupacaoAerovias(int id_aerovia, LocalDate data) {
         return ocupacaoAeroviaCRUD.findAll().stream()
-        .filter(e->e.id == aeroviaId)
+        .filter(e->e.id == id_aerovia)
         .filter(e-> e.data.equals(data))
         .collect(Collectors.toList());
     }

@@ -19,8 +19,8 @@ public class AeroviaRepository implements IAeroviaRep {
         }
 
     @Override
-    public Optional<Aerovia> findAerovia(int aeroviaId) {
-        return this.aeroviaCRUD.findById(aeroviaId);
+    public Optional<Aerovia> findAerovia(int id_aerovia) {
+        return this.aeroviaCRUD.findById(id_aerovia);
         
     }
     

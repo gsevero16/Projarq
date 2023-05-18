@@ -47,7 +47,7 @@ public class AeroviaService{
 
         List<OcupacaoAerovia> ocupadas = this.iOcupacaoAeroviaRep.findOcupacaoAerovias(aeroviaId, data, slotsHorarios);
 
-        List<Integer> altitudesOcupadas = ocupadas.stream().map( ocupaAerovia -> ocupaAerovia.slot_altitude).collect(Collectors.toList());
+        List<Integer> altitudesOcupadas = ocupadas.stream().map( ocupaAerovia -> ocupaAerovia.altitude_slot).collect(Collectors.toList());
 
         return slotsTodos.stream().filter(slotsLivres -> !altitudesOcupadas.contains(slotsLivres)).collect(Collectors.toList());
     }
@@ -60,7 +60,7 @@ public class AeroviaService{
         List<Integer> slotsTodos = new ArrayList<>(Arrays.asList(25000, 26000, 27000, 28000, 29000, 30000, 31000, 32000, 33000, 34000));
         
         for(Integer slotAltitude: slotsTodos){
-            List<OcupacaoAerovia> ocupadasPorSlot = ocupacaoAerovias.stream().filter(ocupacaoAerovia -> ocupacaoAerovia.slot_altitude == slotAltitude).collect(Collectors.toList());
+            List<OcupacaoAerovia> ocupadasPorSlot = ocupacaoAerovias.stream().filter(ocupacaoAerovia -> ocupacaoAerovia.altitude_slot == slotAltitude).collect(Collectors.toList());
             float porcentagem = Float.parseFloat(String.format("%.2f", ((ocupadasPorSlot.size() * 100) / 24.0)));
             listaOcupacao.add(new PercentualOcupacaoDTO( slotAltitude, porcentagem));
             ocupadasPorSlot.clear();

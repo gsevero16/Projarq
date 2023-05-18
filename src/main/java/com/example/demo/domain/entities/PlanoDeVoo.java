@@ -17,23 +17,23 @@ public class PlanoDeVoo{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     public int id;
-    public float horarioPartida;
     public LocalDate data;
+    public float horariopartida;
     public float altitude;
-    public float velocidadeCruzeiro;
+    public float velocidadecruzeiro;
 
     @ManyToOne
-    @JoinColumn( name = "id_rota")
+    @JoinColumn(name = "id_rota")
     public Rota rota;
-
     public PlanoDeVoo() { }
     //public autorizaPlanoVoo(){ }
-    public PlanoDeVoo(float horarioPartida, LocalDate data, int altitude, float velocidadeCruzeiro, Rota rota) {
-        this.horarioPartida = horarioPartida;
-        this.data = data;
-        this.altitude = altitude;
-        this.velocidadeCruzeiro = velocidadeCruzeiro;
+    public PlanoDeVoo(Rota rota, LocalDate data,int altitude, float horariopartida, float velocidadecruzeiro) {
         this.rota = rota;
+        this.data = data;
+        this.horariopartida = horariopartida;
+        this.altitude = altitude;
+        this.velocidadecruzeiro = velocidadecruzeiro;
+        
     }
 
 

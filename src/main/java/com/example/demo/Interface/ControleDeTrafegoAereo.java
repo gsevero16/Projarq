@@ -25,7 +25,7 @@ import java.util.List;
 @RequestMapping("/ControleDeTrafegoAereo")
 public class ControleDeTrafegoAereo {
 	//private ConsultaAeronave consultaAeronave;
-	private ConsultaRota consultaRota;
+	private ConsultaRota consultaRotas;
     private ConsultaSlot consultaSlot;
     private ConsultaRelatorio consultaRelatorio;
     private ConsultaPlanoDeVoo consultaPlanoDeVoo;
@@ -35,14 +35,14 @@ public class ControleDeTrafegoAereo {
     @Autowired
     public ControleDeTrafegoAereo(
            // ConsultaAeronave consultaAeronave,
-			ConsultaRota ConsultaRota, 
+			ConsultaRota ConsultaRotas, 
 			ConsultaSlot ConsultaSlot,
             ConsultaPlanoDeVoo consultaPlanoDeVoo, 
 			ConsultaRelatorio consultaRelatorio,
 			AutorizaPlanoDeVoo autorizaPlanoDeVoo,
             CancelaPlanoDeVoo cancelaPlanoDeVoo) {
            // this.consultaAeronave = consultaAeronave;
-            this.consultaRota = ConsultaRota;
+            this.consultaRotas = ConsultaRotas;
             this.consultaSlot = ConsultaSlot;
             this.consultaRelatorio = consultaRelatorio;
             this.consultaPlanoDeVoo = consultaPlanoDeVoo;
@@ -52,9 +52,9 @@ public class ControleDeTrafegoAereo {
 
     @GetMapping("/rotas")
     @CrossOrigin(origins = "*")
-    public List<RotaDTO> consultaRotasDestinos(@RequestParam("destino") String destino,
+    public List<RotaDTO> consultaRotas(@RequestParam("destino") String destino,
             @RequestParam("origem") String origem) {
-        return this.consultaRotasDestinos(destino, origem);
+        return this.consultaRotas(destino, origem);
     }
 
     @GetMapping("/altitudesLivres/{aeroviaId}")

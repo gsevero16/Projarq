@@ -20,12 +20,12 @@ public class Aerovia {
     public float distancia;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn( name = "aeroporto_destino_id")
-    public Aeroporto destino;
+    @JoinColumn( name = "id_origem")
+    public Aeroporto origem;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn( name = "aeroporto_origem_id")
-    public Aeroporto origem;
+    @JoinColumn( name = "id_destino")
+    public Aeroporto destino;
 
     public Aerovia(){ }
 
