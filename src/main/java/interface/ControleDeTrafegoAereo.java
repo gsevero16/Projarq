@@ -28,24 +28,26 @@ public class ControleDeTrafegoAereo {
 	private ConsultaRota consultaRota;
     private ConsultaSlot consultaSlot;
     private ConsultaRelatorio consultaRelatorio;
-	private AutorizaPlanoDeVoo autorizaPlanoDeVoo;
     private ConsultaPlanoDeVoo consultaPlanoDeVoo;
+	private AutorizaPlanoDeVoo autorizaPlanoDeVoo;
 	private CancelaPlanoDeVoo cancelaPlanoDeVoo;
 
     @Autowired
     public ControleDeTrafegoAereo(
+            ConsultaAeronave consultaAeronave,
 			ConsultaRota ConsultaRota, 
 			ConsultaSlot ConsultaSlot,
             ConsultaPlanoDeVoo consultaPlanoDeVoo, 
+			ConsultaRelatorio consultaRelatorio,
 			AutorizaPlanoDeVoo autorizaPlanoDeVoo,
-            CancelaPlanoDeVoo cancelaPlanoDeVoo, 
-			ConsultaRelatorio consultaRelatorio) {
-        this.consultaRelatorio = consultaRelatorio;
-        this.consultaRota = ConsultaRota;
-        this.consultaSlot = ConsultaSlot;
-        this.consultaPlanoDeVoo = consultaPlanoDeVoo;
-        this.autorizaPlanoDeVoo = autorizaPlanoDeVoo;
-        this.cancelaPlanoDeVoo = cancelaPlanoDeVoo;
+            CancelaPlanoDeVoo cancelaPlanoDeVoo) {
+            this.consultaAeronave = consultaAeronave;
+            this.consultaRota = ConsultaRota;
+            this.consultaSlot = ConsultaSlot;
+            this.consultaRelatorio = consultaRelatorio;
+            this.consultaPlanoDeVoo = consultaPlanoDeVoo;
+            this.autorizaPlanoDeVoo = autorizaPlanoDeVoo;
+            this.cancelaPlanoDeVoo = cancelaPlanoDeVoo;
     }
 
     @GetMapping("/rotas")
@@ -74,9 +76,9 @@ public class ControleDeTrafegoAereo {
         return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
 
-    @PostMapping("/liberarPlano")
+    @PostMapping("/AutorizaPlanoDeVoo")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<PlanoDeVoo> liberarPlano(@RequestBody PlanoDeVooDTO planoVoo) {
+    public ResponseEntity<PlanoDeVoo> AutorizaPlanoDeVoo(@RequestBody PlanoDeVooDTO planoVoo) {
         PlanoDeVoo plano = this.autorizaPlanoDeVoo.autorizaPlanoDeVoo(planoVoo);
         if (plano != null) {
             return ResponseEntity.status(HttpStatus.OK).body(plano);
@@ -84,9 +86,9 @@ public class ControleDeTrafegoAereo {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
-    @DeleteMapping("/cancelaPlano/{planoId}")
+    @DeleteMapping("/cancelaPlanoDeVoo/{planoId}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<PlanoDeVoo> cancelaPlano(@PathVariable int planoId) {
+    public ResponseEntity<PlanoDeVoo> cancelaPlanoDeVoo(@PathVariable int planoId) {
         PlanoDeVoo plano = this.cancelaPlanoDeVoo.cancelaPlano(planoId);
 
         if (plano == null) {

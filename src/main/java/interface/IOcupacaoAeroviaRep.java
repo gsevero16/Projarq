@@ -1,8 +1,6 @@
 package Interface;
 import java.util.List;
 
-import org.springframework.cglib.core.Local;
-
 import domain.entities.OcupacaoAerovia;
 
 import java.time.LocalDate;
